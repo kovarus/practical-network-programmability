@@ -11,6 +11,7 @@ import requests
 import json
 
 # If you don't have it installed then just 'pip install requests'
+# You won't have to use pip to install the json library because it's part of the python standard library
 
 # Now lets define some variables. We can just change these up as we need to
 # Everything we do in NXAPI is going to be a POST operation
@@ -82,7 +83,8 @@ print(response.json())
 print("Pretty Printed JSON:")
 print(json.dumps(response.json(), indent=4))
 
-# That's much easier see what's going on.
+# That's much easier see what's going on. It's helpful to save this as a file somewhere so you can understand
+# the structure and find the data you're looking for
 
 # One nice thing about JSON is it closely mirrors the structure of a python dictionary
 # This means we can access information using keys
@@ -107,6 +109,8 @@ print(my_sample_dictionary.keys())
 my_interfaces = json.loads(response.content)
 print("Dictionary type is", type(my_interfaces))
 # Now we have a dictionary with our API content in it
+# Why not just use .json() like the API sandbox code generator outputs?
+#   By accessing the response object in its entirety we can do some error checking
 
 print("Printing the dictionary:")
 print(my_interfaces)
@@ -129,7 +133,16 @@ for interface in my_interfaces["ins_api"]["outputs"]["output"]["body"]["TABLE_in
 # Now we've printed out every interface. We can also use conditionals to look for specific interfaces
 # In this example we'll just get interfaces that show as "up"
 
+# This is commented out as it won't run if there's an SVI configured on the device
+# print("Printing just the interfaces that are up:")
+# for interface in my_interfaces["ins_api"]["outputs"]["output"]["body"]["TABLE_interface"]["ROW_interface"]:
+#     if interface["state"] == "up":
+#         print(interface["interface"])
+
+# If you've got a VLAN then the above code may throw an exception because SVIs don't have a key called 'state'
+# The fix is simple, lets see if that key exists!
 print("Printing just the interfaces that are up:")
 for interface in my_interfaces["ins_api"]["outputs"]["output"]["body"]["TABLE_interface"]["ROW_interface"]:
-    if interface["state"] == "up":
-        print(interface["interface"])
+    if "state" in interface.keys():
+        if interface["state"] == "up":
+            print(interface["interface"])

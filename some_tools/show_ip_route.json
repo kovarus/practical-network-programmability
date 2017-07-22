@@ -1,0 +1,126 @@
+{
+    "ins_api": {
+        "type": "cli_show",
+        "version": "1.0",
+        "sid": "eoc",
+        "outputs": {
+            "output": {
+                "input": "show ip route ",
+                "msg": "Success",
+                "code": "200",
+                "body": {
+                    "TABLE_vrf": {
+                        "ROW_vrf": {
+                            "vrf-name-out": "default",
+                            "TABLE_addrf": {
+                                "ROW_addrf": {
+                                    "addrf": "ipv4",
+                                    "TABLE_prefix": {
+                                        "ROW_prefix": [
+                                            {
+                                                "ipprefix": "1.1.1.1/32",
+                                                "ucast-nhops": 2,
+                                                "mcast-nhops": 0,
+                                                "attached": "true",
+                                                "TABLE_path": {
+                                                    "ROW_path": [
+                                                        {
+                                                            "ipnexthop": "1.1.1.1",
+                                                            "ifname": "Lo1",
+                                                            "uptime": "PT2H27M13S",
+                                                            "pref": 0,
+                                                            "metric": 0
+                                                        },
+                                                        {
+                                                            "clientname": "local",
+                                                            "ubest": "true"
+                                                        },
+                                                        {
+                                                            "ipnexthop": "1.1.1.1",
+                                                            "ifname": "Lo1",
+                                                            "uptime": "PT2H27M13S",
+                                                            "pref": 0,
+                                                            "metric": 0
+                                                        },
+                                                        {
+                                                            "clientname": "direct",
+                                                            "ubest": "true"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "ipprefix": "2.2.2.2/32",
+                                                "ucast-nhops": 1,
+                                                "mcast-nhops": 0,
+                                                "attached": "false",
+                                                "TABLE_path": {
+                                                    "ROW_path": [
+                                                        {
+                                                            "ipnexthop": "10.224.32.2",
+                                                            "ifname": "Vlan1",
+                                                            "uptime": "PT2M22S",
+                                                            "pref": 110,
+                                                            "metric": 41
+                                                        },
+                                                        {
+                                                            "clientname": "ospf-foo",
+                                                            "type": "intra",
+                                                            "ubest": "true"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "ipprefix": "10.224.32.0/24",
+                                                "ucast-nhops": 1,
+                                                "mcast-nhops": 0,
+                                                "attached": "true",
+                                                "TABLE_path": {
+                                                    "ROW_path": [
+                                                        {
+                                                            "ipnexthop": "10.224.32.1",
+                                                            "ifname": "Vlan1",
+                                                            "uptime": "PT2H28M9S",
+                                                            "pref": 0,
+                                                            "metric": 0
+                                                        },
+                                                        {
+                                                            "clientname": "direct",
+                                                            "ubest": "true"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "ipprefix": "10.224.32.1/32",
+                                                "ucast-nhops": 1,
+                                                "mcast-nhops": 0,
+                                                "attached": "true",
+                                                "TABLE_path": {
+                                                    "ROW_path": [
+                                                        {
+                                                            "ipnexthop": "10.224.32.1",
+                                                            "ifname": "Vlan1",
+                                                            "uptime": "PT2H28M9S",
+                                                            "pref": 0,
+                                                            "metric": 0
+                                                        },
+                                                        {
+                                                            "clientname": "local",
+                                                            "ubest": "true"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
