@@ -146,3 +146,4 @@ for interface in my_interfaces["ins_api"]["outputs"]["output"]["body"]["TABLE_in
     if "state" in interface.keys():
         if interface["state"] == "up":
             print(interface["interface"])
+
