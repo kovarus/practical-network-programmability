@@ -60,7 +60,7 @@ print(response)
 print(type(response))
 
 # Let's see what's inside of it:
-print("Attribtues and methods within the object:")
+print("Attributes and methods within the object:")
 print(dir(response))
 
 # We see a list of attributes that we can access. These attributes are accessible via 'dot notation'

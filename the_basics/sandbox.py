@@ -25,3 +25,6 @@ switches = ["http://192.168.49.10/ins", "http://192.168.49.11/ins"]
 
 for switch in switches:
     print(get_routes(switchuser=switchuser, switchpassword=switchpassword, url=switch))
+
+
+
