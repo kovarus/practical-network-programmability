@@ -101,3 +101,8 @@ ENV/
 .mypy_cache/
 
 flownotes.txt
+
+*.retry
+inventory-*
+*.tfstate*
+.terraform
