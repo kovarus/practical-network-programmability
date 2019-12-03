@@ -11,14 +11,26 @@ import winrm
 import json
 
 # let us establish a variable for the computer we would like to connect to
-vm = "10.64.10.94"
+vm = "34.222.106.222"
 
 # The credentials to log into our computer
 username = "Administrator"
-password = "!Passw0rd"
+password = "ugfT;f(XeRM2GzIGrXyX?&H4enaE=Na6"
 
 # First we neeed a session
-winrm_session = winrm.Session(vm, auth=(username, password))
+
+# https
+winrm_session = winrm.Session(vm, auth=(username, password), transport='ssl', server_cert_validation='ignore')
+
+# http
+# winrm_session = winrm.Session(vm, auth=(username, password))
+
+#winrm_session = winrm.Protocol(
+#    endpoint='https://{}:5986/wsman'.format(vm),
+#    transport='ntlm',
+#    username=r'Administrator',
+#    password=password,
+#    server_cert_validation='ignore')
 
 """
 
