@@ -18,10 +18,10 @@ username = "Administrator"
 password = "!Passw0rd"
 
 # https
-winrm_session = winrm.Session(vm, auth=(username, password), transport='ssl', server_cert_validation='ignore')
+# winrm_session = winrm.Session(vm, auth=(username, password), transport='ssl', server_cert_validation='ignore')
 
 # http
-# winrm_session = winrm.Session(vm, auth=(username, password))
+winrm_session = winrm.Session(vm, auth=(username, password))
 
 """
 
