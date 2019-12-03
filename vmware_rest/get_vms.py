@@ -87,8 +87,10 @@ json_response = response.json()
 
 vms = json_response['value']
 
+json_pretty = json.dumps(vms, indent=4, sort_keys=True)
+
 print('Here is the response from our VM pull!')
-print(vms)
+print(json_pretty)
 
 """
 
