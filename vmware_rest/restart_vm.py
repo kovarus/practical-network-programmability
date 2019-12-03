@@ -52,98 +52,11 @@ session_token = json_response["value"]
 print("Here is our session token!")
 print(session_token)
 
-"""
-
-    Now, we can use the REST API's for vCenter to gather information on our environment
-
-"""
-
-# First, we need to establish the headers for our calls and the rest_method
-
 # we will be using GET for most of these calls because we are only retrieving data from our environment
 request_method = "GET"
 
 # we need to supply a header that contains the type of response we want back as well as our session id
 headers = {"Content-type": "application/json", "vmware-api-session-id": session_token }
-
-# The payload here is still empty and we still want to avoid issues with self-signed certificates so we are good to go.
-
-"""
-
-    Get a list of the VM's in our environment
-
-"""
-
-# this is the url to retrieve all VM's
-url = "https://10.64.5.21/rest/vcenter/vm"
-
-response = requests.request(request_method,                     #
-                            url=url,
-                            headers=headers,
-                            verify=ssl_verify,
-                            data=json.dumps(payload),
-                            auth=(username, password))
-
-# retrieve the json response
-json_response = response.json()
-
-vms = json_response['value']
-
-print('Here is the response from our VM pull!')
-print(vms)
-
-"""
-
-    Let us look at a particular VM's details, we will do so with the first VM retrieve above
-
-"""
-
-# Let us pull the identifier off of the VM in question
-vm = vms[0]['vm']
-
-# this is the url to retrieve all VM's
-url = "https://10.64.5.21/rest/vcenter/vm/{}".format(vm)
-
-response = requests.request(request_method,                     #
-                            url=url,
-                            headers=headers,
-                            verify=ssl_verify,
-                            data=json.dumps(payload),
-                            auth=(username, password))
-
-# retrieve the json response
-json_response = response.json()
-
-# we are going to now format our response so that it easier to read in the terminal
-json_pretty = json.dumps(json_response['value'], indent=4, sort_keys=True)
-
-print('Here is the response for this particular vm ({})!'.format(vm))
-print(json_pretty)
-
-"""
-
-    Let us say that we now want to dig deeper into the VM and determine its Guest OS Information
-
-"""
-
-# this is the url to retrieve all VM's
-url = "https://10.64.5.21/rest/vcenter/vm/{}/guest/identity".format(vm)
-
-response = requests.request(request_method,                     #
-                            url=url,
-                            headers=headers,
-                            verify=ssl_verify,
-                            data=json.dumps(payload),
-                            auth=(username, password))
-
-# retrieve the json response
-json_response = response.json()
-
-# we are going to now format our response so that it easier to read in the terminal
-json_pretty = json.dumps(json_response['value'], indent=4, sort_keys=True)
-
-print('Here is the response for this particular vm ({})!'.format(vm))
-print(json_pretty)
 
 """
 
@@ -154,11 +67,8 @@ print(json_pretty)
 # this request will need to be a POST
 request_method = "POST"
 
-# We want to make sure we only reboot the VM we wanted
-vms_filtered = [x for x in vms if x['name'] == 'test-vm-2']
-
-# get our vm
-vm = vms_filtered[0]['vm']
+# set the vm to reboot
+vm = 'vm-456'
 
 # this is the url to retrieve all VM's
 url = "https://10.64.5.21/rest/vcenter/vm/{}/guest/power?action=reboot".format(vm)
